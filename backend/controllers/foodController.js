@@ -3,6 +3,7 @@ const {
   getAllDishes,
   getDishByName,
   getDishesByIngredients,
+  getFilterOptions,
 } = require("../services/foodService");
 
 const loadDataOnce = async (req, res) => {
@@ -55,5 +56,20 @@ const suggestDishes = async (req, res) => {
       .json({ error: "Failed to suggest dishes", details: err.message });
   }
 };
+const filterOptions = async (req, res) => {
+  try {
+    const filters = await getFilterOptions();
+    console.log(filters);
+    res.json({ ...filters });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load filters" });
+  }
+};
 
-module.exports = { loadDataOnce, listDishes, findDish, suggestDishes };
+module.exports = {
+  loadDataOnce,
+  listDishes,
+  findDish,
+  suggestDishes,
+  filterOptions,
+};

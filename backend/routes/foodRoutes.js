@@ -5,11 +5,13 @@ const {
   listDishes,
   findDish,
   suggestDishes,
+  filterOptions,
 } = require("../controllers/foodController");
 
 router.post("/load-data", loadDataOnce);
 router.get("/", listDishes);
 router.get("/:name", findDish);
 router.post("/suggest", suggestDishes);
+router.post("/filters", filterOptions);
 
 module.exports = router;

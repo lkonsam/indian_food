@@ -96,9 +96,16 @@ const getDishesByIngredients = async (ingredients) => {
   });
 };
 
+const getFilterOptions = async () => {
+  const states = await Dish.distinct("state");
+  const flavors = await Dish.distinct("flavor_profile");
+  return { states: states.filter(Boolean), flavors: flavors.filter(Boolean) };
+};
+
 module.exports = {
   loadCSVData,
   getAllDishes,
   getDishByName,
   getDishesByIngredients,
+  getFilterOptions,
 };

@@ -34,3 +34,8 @@ export const loadSeedData = async () => {
   const res = await axios.post(`${BASE_URL}/load-data`);
   return res.data;
 };
+
+export const getFilterOptions = async () => {
+  const res = await axios.post(`${BASE_URL}/filters`);
+  return res.data;
+};
