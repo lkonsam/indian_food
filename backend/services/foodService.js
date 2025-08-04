@@ -90,10 +90,19 @@ const getDishByName = async (name) => {
   return await Dish.findOne({ name: new RegExp(`^${name}$`, "i") });
 };
 
-const getDishesByIngredients = async (ingredients) => {
-  return await Dish.find({
-    ingredients: { $all: ingredients.map((i) => i.toLowerCase()) },
-  });
+const getDishesByIngredients = async (ingredients, search = "") => {
+  const ingredientRegexes = ingredients.map((i) => new RegExp(i.trim(), "i"));
+
+  const filter = {
+    ingredients: { $in: ingredientRegexes },
+  };
+
+  if (search.trim() !== "") {
+    const searchRegex = new RegExp(search.trim(), "i");
+    filter.$or = [{ name: searchRegex }, { ingredients: searchRegex }];
+  }
+
+  return await Dish.find(filter);
 };
 
 const getFilterOptions = async () => {

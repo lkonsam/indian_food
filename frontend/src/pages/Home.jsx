@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { fetchDishes, getFilterOptions } from "../api/api";
-import axios from "axios";
 import DishTable from "../components/DishTable";
 
 export default function Home() {
@@ -46,6 +45,7 @@ export default function Home() {
       setDishes(res.data);
       setTotal(res.total);
     } catch (err) {
+      console.error(err);
       showMessage("Failed to load dishes", "error");
     } finally {
       setLoading(false);
@@ -61,6 +61,7 @@ export default function Home() {
       setStateOptions(cleanStates);
       setFlavorOptions(cleanFlavors);
     } catch (err) {
+      console.error(err);
       showMessage("Failed to load filter options", "error");
     }
   };
@@ -86,8 +87,8 @@ export default function Home() {
           className="p-2 border rounded"
         >
           <option value="">All Diets</option>
-          <option value="veg">Veg</option>
-          <option value="non-veg">Non-Veg</option>
+          <option value="vegetarian">Veg</option>
+          <option value="non vegetarian">Non-Veg</option>
         </select>
 
         <select

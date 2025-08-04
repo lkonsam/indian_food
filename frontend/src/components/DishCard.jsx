@@ -4,7 +4,7 @@ export default function DishCard({ dish }) {
   return (
     <div className="bg-white rounded-xl shadow p-4 w-full md:w-60">
       <img
-        src={`https://picsum.photos/id/${dish.imageId % 1000}/300/200`}
+        src={`/images/food${(dish.imageId % 14) + 1}.jpg`}
         alt={dish.name}
         className="rounded-md mb-3"
       />

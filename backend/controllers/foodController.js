@@ -43,12 +43,13 @@ const findDish = async (req, res) => {
 const suggestDishes = async (req, res) => {
   try {
     const ingredients = req.body.ingredients;
+    const search = req.body.search;
     if (!Array.isArray(ingredients) || ingredients.length === 0) {
       return res
         .status(400)
         .json({ message: "Ingredients must be a non-empty array" });
     }
-    const dishes = await getDishesByIngredients(ingredients);
+    const dishes = await getDishesByIngredients(ingredients, search);
     res.status(200).json(dishes);
   } catch (err) {
     res
@@ -59,7 +60,7 @@ const suggestDishes = async (req, res) => {
 const filterOptions = async (req, res) => {
   try {
     const filters = await getFilterOptions();
-    console.log(filters);
+    // console.log(filters);
     res.json({ ...filters });
   } catch (err) {
     res.status(500).json({ error: "Failed to load filters" });

@@ -21,12 +21,20 @@ export const fetchDishes = async (
 };
 
 export const getDishByName = async (name) => {
-  const res = await axios.get(`${BASE_URL}/${encodeURIComponent(name)}`);
+  const res = await axios.get(`${BASE_URL}/${name}`);
   return res.data;
 };
 
-export const suggestDishes = async (ingredients) => {
-  const res = await axios.post(`${BASE_URL}/suggest`, { ingredients });
+export const suggestDishes = async (ingredients, search) => {
+  const param = ingredients
+    .split(",")
+    .map((ele) => ele.trim())
+    .filter((ele) => ele.length > 0);
+
+  const res = await axios.post(`${BASE_URL}/suggest`, {
+    ingredients: param,
+    search,
+  });
   return res.data;
 };
 
