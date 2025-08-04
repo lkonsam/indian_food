@@ -1,7 +1,7 @@
 // src/api/api.js
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000/api/food";
+const BASE_URL = "https://indian-food-p1b1.onrender.com/api/food";
 
 export const fetchDishes = async (
   page = 1,

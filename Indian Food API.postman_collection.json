@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "0b2d98b6-e733-4037-9588-161b80b1b599",
+		"name": "Indian Food API",
+		"description": "API Collection to test all backend endpoints of the Indian Food project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29426949"
+	},
+	"item": [
+		{
+			"name": "Load CSV Data (Run Once)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/food/load-data",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food",
+						"load-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Dishes by Keyword",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/food?search=modak",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "modak"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Dishes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/food?page=1&limit=10",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Dishes (Veg, Sweet, Kerala)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/food?diet=vegetarian&flavor=sweet&state=Kerala",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food"
+					],
+					"query": [
+						{
+							"key": "diet",
+							"value": "vegetarian"
+						},
+						{
+							"key": "flavor",
+							"value": "sweet"
+						},
+						{
+							"key": "state",
+							"value": "Kerala"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Dish by Name (Modak)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/food/Modak",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food",
+						"Modak"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suggest Dishes from Ingredients",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ingredients\": [\"Rice flour\", \"coconut\", \"jaggery\"]\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/food/suggest",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food",
+						"suggest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Options",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ingredients\": [\"Rice flour\", \"coconut\", \"jaggery\"]\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/food/suggest",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"food",
+						"suggest"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3000",
+			"type": "default"
+		}
+	]
+}
