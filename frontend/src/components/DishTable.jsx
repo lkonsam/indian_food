@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function DishTable({ dishes, onSort, sortBy, order }) {
   const getArrow = (field) => {
@@ -62,12 +63,12 @@ export default function DishTable({ dishes, onSort, sortBy, order }) {
                 </div>
               </td>
               <td className="p-3 border font-medium">
-                <a
-                  href={`/dish/${encodeURIComponent(dish.name)}`}
+                <Link
+                  to={`/dish/${encodeURIComponent(dish.name)}`}
                   className="text-blue-500 hover:underline"
                 >
                   {safeValue(dish.name)}
-                </a>
+                </Link>
               </td>
               <td className="p-3 border">{safeValue(dish.diet)}</td>
               <td className="p-3 border">{safeValue(dish.prep_time)}</td>
@@ -75,12 +76,12 @@ export default function DishTable({ dishes, onSort, sortBy, order }) {
               <td className="p-3 border">{safeValue(dish.state)}</td>
               <td className="p-3 border">{safeValue(dish.region)}</td>
               <td className="p-3 border text-center">
-                <a
-                  href={`/dish/${encodeURIComponent(dish.name)}`}
+                <Link
+                  to={`/dish/${encodeURIComponent(dish.name)}`}
                   className="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-xs"
                 >
                   View
-                </a>
+                </Link>
               </td>
             </tr>
           ))}

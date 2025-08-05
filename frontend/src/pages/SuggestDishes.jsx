@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { suggestDishes } from "../api/api";
+import { Link } from "react-router-dom";
 
 export default function Suggest() {
   const { showMessage, search } = useOutletContext();
@@ -58,9 +59,9 @@ export default function Suggest() {
             key={dish._id}
             className="border p-4 rounded shadow hover:shadow-lg transition"
           >
-            <a
-              href={`/dish/${encodeURIComponent(dish.name)}`}
-              className="no-decoration"
+            <Link
+              to={`/dish/${encodeURIComponent(dish.name)}`}
+              className="text-blue-500 hover:underline"
             >
               <div className="w-full h-60 overflow-hidden rounded ">
                 <img
@@ -103,7 +104,7 @@ export default function Suggest() {
                     ))
                   : safeValue(dish.ingredients)}
               </p>
-            </a>
+            </Link>
           </div>
         ))}
       </div>

@@ -91,15 +91,20 @@ const getDishByName = async (name) => {
 };
 
 const getDishesByIngredients = async (ingredients, search = "") => {
-  const ingredientRegexes = ingredients.map((i) => new RegExp(i.trim(), "i"));
+  const ingredientList = ingredients.map((i) => i.trim().toLowerCase());
 
   const filter = {
-    ingredients: { $in: ingredientRegexes },
+    ingredients: { $all: ingredientList },
   };
 
   if (search.trim() !== "") {
     const searchRegex = new RegExp(search.trim(), "i");
-    filter.$or = [{ name: searchRegex }, { ingredients: searchRegex }];
+    filter.$or = [
+      { name: searchRegex },
+      { state: searchRegex },
+      { region: searchRegex },
+      { ingredients: searchRegex },
+    ];
   }
 
   return await Dish.find(filter);
